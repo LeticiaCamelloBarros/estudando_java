@@ -14,7 +14,7 @@ public class Conta_banco {
     	return this.tipo;
     }
     public void setTipo(String t) {
-    	if (t == "CC" || t == "CP") {
+    	if (t.equals("CC") || t.equals("CP")) {
     		this.tipo = t ;
     	}else {
     		System.out.println("tipo de conta inválido");
@@ -27,9 +27,9 @@ public class Conta_banco {
     	if (this.tipo ==null) {
     		System.out.println("vc deve configurar um tipo de conta antes do tentar configurar o saldo");
     	}
-        else if  (this.tipo == "CC") {
+        else if  (this.tipo.equals ( "CC")) {
     		this.saldo = s + 50 ;
-    	}else if (this.tipo =="CP") {
+    	}else if (this.tipo.equals("CP")) {
     		this.saldo = s + 150;
     	}
     }
@@ -75,9 +75,9 @@ public class Conta_banco {
     	return v ;
     }
     public void pagarMensalidade() {
-    	if (this.tipo=="CC") {
+    	if (this.tipo.equals("CC")) {
     		this.saldo = this.saldo - 12 ;
-    	}else if  (this.tipo=="CP"){
+    	}else if  (this.tipo.equals("CP")){
     		this.saldo  = this.saldo -15;
     	}
     }
@@ -88,3 +88,10 @@ public class Conta_banco {
     	this.numconta = n ;
     }
 }
+/*public String getModelo() {
+	   return this.modelo;
+	   
+}
+public void setModelo(String m ) {
+	   this.modelo = m ;
+}*/
