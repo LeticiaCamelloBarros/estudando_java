@@ -24,14 +24,10 @@ public class Conta_banco {
     	return this.saldo;
     }
     public void setSaldo(int s) {
-    	if (this.tipo ==null) {
+    	if (this.getTipo() ==null) {
     		System.out.println("vc deve configurar um tipo de conta antes do tentar configurar o saldo");
     	}
-        else if  (this.tipo.equals ( "CC")) {
-    		this.saldo = s + 50 ;
-    	}else if (this.tipo.equals("CP")) {
-    		this.saldo = s + 150;
-    	}
+        this.saldo = s ; 
     }
     public String getDono (){
     	return this.dono;
@@ -45,20 +41,26 @@ public class Conta_banco {
     public void setStatus(boolean s) {    
     	this.status = s ;
     }
-    public void abrirconta() {
+    public void abrirconta(int s ) {
     	this.status = true;
+    	 if  (this.getTipo().equals( "CC")) {
+    		this.setSaldo( s + 50 ) ;
+    	}else if (this.getTipo().equals("CP")) {
+    		this.setSaldo( s + 150);
+    	}
     }
     public void fecharconta(){
-    	if (this.saldo == 0 ){
-    	this.status = false;
+    	if (this.getSaldo() == 0 ){
+    		//não pode se atribuir ou comparar ao um get atributo.
+    	this.setStatus(false) ;
     	//para fechar uma conta ela deve estar vazia , ela não pode nem ter dinheiro , nem tá no negativo
     	}else {
     		//abre else 
-    	    if (this.saldo<0) 
+    	    if (this.getSaldo()<0) 
     	    {
 	    		System.out.println("pague suas dividas para fechar sua conta !!");
     	    }
-    	    else if (this.saldo>0) 
+    	    else if (this.getSaldo()>0) 
     	    {
     	    	System.out.println("essa conta ainda tem dinheiro,transfira todo seu montante para outra conta antes de fecha-la");
     	    }
@@ -68,17 +70,26 @@ public class Conta_banco {
     	
     
     public void depositar (int v) {
-    	this.saldo = this.saldo + v ;
+    	this.setSaldo(this.getSaldo() + v) ;
     }
-    public int  sacar (int v) {
-    	this.saldo = this.saldo - v ;
-    	return v ;
+    public void  sacar (int v) {
+      if (v<=this.getSaldo()) {
+    	  if (v==this.getSaldo()) {
+        	  this.setSaldo(this.getSaldo() - v);
+        	  System.out.println("conta zerada");
+    	  }
+    	  this.setSaldo(this.getSaldo() - v);
+    	  }else {
+    		  System.out.println("valor que você quer sacar é maior que o seu saldo atual");
+    	  }
+    	  
+
     }
     public void pagarMensalidade() {
-    	if (this.tipo.equals("CC")) {
-    		this.saldo = this.saldo - 12 ;
-    	}else if  (this.tipo.equals("CP")){
-    		this.saldo  = this.saldo -15;
+    	if (this.getTipo().equals("CC")) {
+    		this.setSaldo(this.saldo - 12)  ;
+    	}else if  (this.getTipo().equals("CP")){
+    		this.setSaldo( this.saldo -15);
     	}
     }
     public int getNumconta() {
@@ -88,10 +99,3 @@ public class Conta_banco {
     	this.numconta = n ;
     }
 }
-/*public String getModelo() {
-	   return this.modelo;
-	   
-}
-public void setModelo(String m ) {
-	   this.modelo = m ;
-}*/
