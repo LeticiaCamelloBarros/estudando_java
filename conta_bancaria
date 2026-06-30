@@ -1,0 +1,90 @@
+package megapacote;
+
+public class Conta_banco {
+    private int saldo ;
+    private int numconta;
+    private String tipo ;
+    private boolean status ;
+    private String dono ;
+    public Conta_banco () {
+    	this.status = false ;
+    	this.saldo = 0 ;
+    }
+    public String getTipo() {
+    	return this.tipo;
+    }
+    public void setTipo(String t) {
+    	if (t == "CC" || t == "CP") {
+    		this.tipo = t ;
+    	}else {
+    		System.out.println("tipo de conta inválido");
+    	}
+    }
+    public int getSaldo() {
+    	return this.saldo;
+    }
+    public void setSaldo(int s) {
+    	if (this.tipo ==null) {
+    		System.out.println("vc deve configurar um tipo de conta antes do tentar configurar o saldo");
+    	}
+        else if  (this.tipo == "CC") {
+    		this.saldo = s + 50 ;
+    	}else if (this.tipo =="CP") {
+    		this.saldo = s + 150;
+    	}
+    }
+    public String getDono (){
+    	return this.dono;
+    }
+    public void Setdono (String d ) {
+    	this.dono = d ;
+    }
+    public boolean getStatus() {
+         return this.status ;
+    }
+    public void setStatus(boolean s) {    
+    	this.status = s ;
+    }
+    public void abrirconta() {
+    	this.status = true;
+    }
+    public void fecharconta(){
+    	if (this.saldo == 0 ){
+    	this.status = false;
+    	//para fechar uma conta ela deve estar vazia , ela não pode nem ter dinheiro , nem tá no negativo
+    	}else {
+    		//abre else 
+    	    if (this.saldo<0) 
+    	    {
+	    		System.out.println("pague suas dividas para fechar sua conta !!");
+    	    }
+    	    else if (this.saldo>0) 
+    	    {
+    	    	System.out.println("essa conta ainda tem dinheiro,transfira todo seu montante para outra conta antes de fecha-la");
+    	    }
+    	}
+      }
+    
+    	
+    
+    public void depositar (int v) {
+    	this.saldo = this.saldo + v ;
+    }
+    public int  sacar (int v) {
+    	this.saldo = this.saldo - v ;
+    	return v ;
+    }
+    public void pagarMensalidade() {
+    	if (this.tipo=="CC") {
+    		this.saldo = this.saldo - 12 ;
+    	}else if  (this.tipo=="CP"){
+    		this.saldo  = this.saldo -15;
+    	}
+    }
+    public int getNumconta() {
+    	return this.numconta;
+    }
+    public void setNumconta(int n) {
+    	this.numconta = n ;
+    }
+}
