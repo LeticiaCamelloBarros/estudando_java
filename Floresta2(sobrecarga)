@@ -1,0 +1,18 @@
+package fauna;
+
+public class Floresta {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+    Ave a = new Ave();
+    Peixe p = new Peixe();
+    Mamifero m = new Mamifero();
+    Reptil r = new Reptil();
+    Cachorro c = new Cachorro() ;
+    c.reagir(true);
+    c.reagir("ola");
+    c.reagir( 6, 70);
+    
+	}
+
+}
